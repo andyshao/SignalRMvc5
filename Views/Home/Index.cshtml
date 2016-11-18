@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Чат";
+}
+
+<div id="chatName">Чат-комната</div>
+
+<div class="main">
+
+    <!-- Разметка содержит по сути два блока: loginBlock (блок ввода логина)  и chatBody (сам чат) -->
+    <div id="loginBlock">
+        Введите логин:<br />
+        <input id="txtUserName" type="text" style="width:400px;" />
+        <input id="btnLogin" type="button" value="Войти" />
+    </div>
+
+    <!--   В один момент времени виде только один блок, поэтому, если пользователь удачно подключился,
+        то мы переключаем видимость, делая видимым блок chatBody. -->
+    <div id="chatBody">
+        <div id="header"></div>
+
+        <!-- Блок chatBody содержит три подблока:
+        inputForm (форма ввода сообщения),
+        chatroom (поле, куда будут добавляться сообщения) и
+        chatusers (список всех пользователей, кроме текущего). -->
+
+        <div class="row">
+            <div id="inputForm" class="col-sm-8">
+                <input type="text" id="message" style="width:500px;" />
+                <input type="button" id="sendmessage" value="Отправить" />
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div id="chatroom" class="col-sm-8"></div>
+
+            <div id="chatusers" class="col-sm-3">
+                <p style="color:darkblue;">Сейчас в чате:</p>
+                <hr />
+            </div>
+        </div>
+
+    </div>
+
+    <input id="hdId" type="hidden" />
+    <input id="username" type="hidden" />
+</div>
+
+<!-- Основные действия на клиентской части будет выполнять код javascript.
+    Причем перед подключением всех остальных файлов скриптов идет подключение библиотеки jQuery,
+    поскольку скрипт SignalR имеет зависимости от jQuery. -->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<!--    Далее подключается сама библиотека SignalR.  -->
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+
+<!--   Затем подключается скрипт signalr/hubs.
+    Хотя на самом деле пока его нет, но в процессе запуска приложения
+    он будет автоматически генерироваться и после этого использоваться.  -->
+<script src="~/signalr/hubs"></script>
+
+<!--  Последним идет подключение скрипта util.js, которого пока еще нет. 
+    Итак, добавим файл с данным названием в папку Scripts и определим в нем код -->
+<script src="~/Scripts/util.js"></script>
