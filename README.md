@@ -1,2 +1,2 @@
 # SignalRMvc5
-Snippents of code for SignalR chat.
+Snippets of code for SignalR chat.
